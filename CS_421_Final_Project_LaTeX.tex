@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{times}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\title{Elevating C++ with FC++: Functional Programming Insights}
+\author{Jacob Hennig}
+\date{}
+\begin{document}
+\maketitle
+\setstretch{1.15}
+
+\section{Introduction}
+The paper \textit{Functional Programming in C++} [1] by Brian McNamara and Yannis Smaragdakis provides valuable insights into how functional programming compares to imperative programming, especially through its application in C++. Reading it has given me a greater understanding of how functional programming paradigms can effectively be integrated into a language like C++, a language that is traditionally associated with imperative and object-oriented approaches. The paper provides an in-depth exploration of the FC++ library, which serves as a framework for introducing functional programming principles into C++. Using this library, McNamara and Smaragdakis thoroughly examine several key concepts, demonstrating how functional programming techniques that are often seen in languages like Haskell can be incorporated into C++ through FC++. This summary of the paper will delve into the key concepts mentioned, discuss their practical implications, reflect on my personal understandings, and discuss the relevance of these concepts.
+
+\section{Higher-Order Functions \& Functoids}
+A common idea in the paper is the implementation of higher-order functions (HOFs) in C++ through FC++. HOFs are functions that can take other functions as arguments or return functions as results, as demonstrated by functions like \texttt{map}. In the FC++ library, these functions are implemented using functoids. These functoids encapsulate and manage behavior in a dynamic way, working similarly to a lambda expression or a functor. This allows them to be passed around and used as class objects in various functional operations. Functoids can be either direct, providing specific behaviors right away, or indirect, encapsulating another functoid for extra layers of abstraction. This flexibility makes it easy to use HOFs like \texttt{map} to modify collections, making it simple to reuse and update code. The paper states that ``[the] entire library is free of side-effects, in that every method is a const method, and all parameters are passed by constant reference'' [1]. This means that the FC++ library avoids changing data and causing unintentional side effects, sticking to functional programming principles. This approach helps keep the code modular, reliable, and easy to maintain, showing a positive use of functional programming techniques within C++.
+
+\section{Subtype Polymorphism}
+The paper also emphasizes subtype polymorphism, demonstrating how FC++ uses it to enhance the flexibility of functional programming in C++. Subtype polymorphism in FC++ is demonstrated by how functoids can be used as different types through inheritance and templates. This means functoids can be treated as more general types, which makes the code more flexible and reusable. Functoids in FC++ can work with different functional interfaces and template parameters, allowing many functional programming techniques in C++. McNamara and Smaragdakis highlight how the \texttt{Ref} class serves as a practical example of subtype polymorphism, stating that ``Ref is a fairly mature `smart pointer' class and can be used as a complete replacement of C++ pointers'' [1]. The \texttt{Ref} class shows how subtype polymorphism allows for the seamless management of different types through smart pointers, which provides automatic memory management and prevents common pointer related errors. This can not only simplify the handling of various data types but also brings in functional programming principles into C++’s type framework, making code more adaptable and generalizable. By utilizing subtype polymorphism, FC++ can effectively support advanced functional programming techniques within C++.
+
+\section{Reference-Counting Memory Management}
+The paper discusses the significance of memory management in functional programming, particularly through the \texttt{Ref} class in FC++. Functional programming often relies on immutability and the frequent creation of function objects. This can make the task of efficient memory management challenging. The \texttt{Ref} class in FC++ addresses this by tracking references to objects, which helps manage memory usage effectively. This feature is crucial because it ensures that memory is allocated and freed properly, even while working with complex functional constructs. The paper notes that ``a key for FC++ is that the Refs are subtype polymorphic'' [1], stating how subtype polymorphism in \texttt{Ref} enhances memory management by allowing it to handle different types of objects without issue. This approach shows how C++ can effectively manage memory simultaneously with supporting advanced functional programming techniques.
+
+\section{Practical \& Extensible Library}
+The FC++ library's practical and extensible design is built up by its inclusion of components such as functoids, \texttt{List} classes, and a standard prelude equipped with HOFs like \texttt{map}, \texttt{filter}, and \texttt{foldl}. These elements show how functional programming principles can be effectively applied. The functoids work as discussed previously, enabling dynamic and reusable code structures. The \texttt{List} classes offer immutable collections that support functional operations. Meanwhile, the prelude provides important functional programming utilities that facilitate common tasks in a functional style. As said in another paper by the same authors, \textit{Functional Programming in C++ Using the FC++ Library}, ``FC++ is distinguished from all such libraries by its powerful type system. FC++ offers complete support for manipulating polymorphic functions - passing them as arguments to other functions and returning them as result'' [2]. This examination of FC++ components has expanded my knowledge on how theoretical functional programming concepts can be translated into more practical tools in C++ programming, demonstrating their value in building reliable and efficient code.
+
+\section{Code Inspection}
+Inspecting the FC++ code [3] provided interesting insights into practical functional programming. Going through some of the Haskell files, from my understanding, the \texttt{function.h} file showed the implementation of HOFs through functoid classes, enhancing code modularity and clarity. The \texttt{list.h} file demonstrated lazy evaluation with its \texttt{List} class, which can be used to defer computations that can optimize resource usage. The \texttt{ref\_count.h} file had reference-counting memory management in it through the \texttt{Ref} class, showing efficient handling of memory in a functional programming context. Additionally, the \texttt{prelude.h} file featured various functional programming functions, reinforcing their practical use in C++. These elements effectively connected theoretical concepts with practical applications, deepening my understanding of how functional programming principles can be applied to C++ to improve code efficiency and modularity.
+
+\section{Conclusion}
+Exploring functional programming principles within C++ reveals the potential it has to enhance the language's capabilities. The FC++ library is a great example of how functional programming concepts, such as HOFs, lazy evaluation, subtype polymorphism, and reference-counting memory management, can be effectively integrated into C++. This approach can significantly improve important aspects such as code modularity, reusability, and efficiency. The practical application of these principles not only bridges the gap between theoretical understanding and practical usage but also demonstrates how functional programming can broaden C++'s versatility and provide new tools for developers. For C++ programmers, FC++ introduces techniques that achieve higher levels of abstraction and code cleanliness for reuse. For functional programmers, it demonstrates how functional programming ideas can be enriched with the procedural and object-oriented features of C++ by making it more capable and dynamic. For language researchers, the study highlights C++’s type system's effectiveness in supporting functional programming, which offers new insights into its potential. Gaining an understanding of FC++ has given me new insights about functional programming and its impact, offering insights into its application and reaffirming the effectiveness of these principles in enhancing code quality and adaptability. The time spent writing this paper and for the research that went into it has enhanced my understanding of the uses of functional programming principles in diverse coding scenarios, giving me a further appreciation for what this class teaches.
+
+\section{References}
+    \begin{enumerate}[label=]
+        \item \textbf{Main Article:}
+    \begin{enumerate}[label={[1]}]
+        \item Brian McNamara and Yannis Smaragdakis. ``Functional Programming in C++.'' In \textit{Proceedings of the Fifth ACM SIGPLAN International Conference on Functional Programming (ICFP '00)}, 2000, pp. 118–129. Association for Computing Machinery, New York, NY, USA. \url{https://dl.acm.org/doi/10.1145/351240.351251}
+    \end{enumerate}
+    \item \textbf{Additional Paper Reference:}
+    \begin{enumerate}[label={[2]}]
+        \item Brian McNamara and Yannis Smaragdakis. ``Functional Programming in C++ Using the FC++ Library.'' \textit{ACM SIGPLAN Notices}, vol. 36, no. 4, pp. 25–30, April 2001. \url{https://doi.org/10.1145/375431.375417}
+    \end{enumerate}
+    \item \textbf{Code Repository:}
+    \begin{enumerate}[label={[3]}]
+        \item Brian McNamara and Yannis Smaragdakis. ``FCplusplus'' \url{https://github.com/jhetherly/FCplusplus}
+    \end{enumerate}
+    \item \textbf{Other Relevant Resources:}
+    \begin{enumerate}[label={[4]}]
+        \item Alex Yannis. ``FC++: Functional Programming Library for C++.'' \url{https://yanniss.github.io/fc++}
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
